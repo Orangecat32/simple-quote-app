@@ -1,88 +1,71 @@
 
 .App {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-
+  background-color: black;
+  font-size: calc(5px + 2vmin);
 }
 
-.container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
+.table-container {
+  display:block;
+  /* max-width: 600px; */
+}
+
+.hdr-expand {
+  width: 20px;
+  background-color: blueviolet;
+}
+
+.col-expand {
+  width: 20px;
+  /* max-width: 2px;
+  min-width: 2px; */
+  background-color: blueviolet;
+}
+
+.checker {
   background-color: pink;
-  font-size: calc(5px + 2vmin);
-  max-width: 700px;
 }
 
 .header {
-  display: flex; 
-  flex: 1 1;
-  flex-direction: row; 
   background-color: gray;
   top: 0px;
-  align-items: center;
-  width: 100%;
-  height: 28px;
   position: fixed;
-  max-width: 700px;
-}
-
-
-.ticker-list {
-  display: flex;
-  flex: 1 1;
-  flex-direction: column;
   width: 100%;
-  position: fixed;
-  max-width: 700px;
-  margin-top: 28px;
-  overflow-y: auto;
-  height: calc(100vh - 28px);
-}
-
-.hdr-align {
-  margin-right: 1em;
 }
 
 .col-sym {
-  width: 4em;
+  width: 6em;
   text-align: left;
-  margin-left: 2px;
 }
 
 .col-data {
-  width: calc((100% - 4em - 5px) / 4);
+  width: calc((100vw - 6em - 30px) / 4);
   text-align: right;
 }
 
-.ticker-row {
+.col-pc {
+  /* width: 5em; */
+  text-align: right;
+}
+
+
+.hdr-item {
+  width: calc(((100vw - 6em) / 4) - 6px);
+  text-align: center;
+}
+
+table  tbody{
+  margin-top: 33px;
+}
+
+tbody tr:nth-child(odd) {
   background: lightblue;
-}
+} 
 
-.ticker-row:nth-of-type(odd) { background: lightcyan; }
-
-
-.ticker-container {
-  display: flex;
-  flex: 1 1;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-}
-
-.ticker-numeric {
-  display: flex;
-  flex: 1 1;
-  flex-direction: row;
+table tbody tr {
+  background: lightcyan; 
   width: 100%;
 }
-
-.ticker-details{
-  margin-left: 3em;
-}
-
-
-
-
 
