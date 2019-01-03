@@ -32,7 +32,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="header">
-          <div className="col-1">Symbol</div>
+          <div className="col-sym">Symbol</div>
           <div className="col-data">Last</div>
           <div className="col-pc">Change</div>
           <div className="col-data">Bid</div>
