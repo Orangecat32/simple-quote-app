@@ -1,31 +1,13 @@
-
 .App {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: black;
+  background-color: grey;
   font-size: calc(5px + 2vmin);
 }
 
 .table-container {
   display:block;
-  /* max-width: 600px; */
-}
-
-.hdr-expand {
-  width: 20px;
-  background-color: blueviolet;
-}
-
-.col-expand {
-  width: 20px;
-  /* max-width: 2px;
-  min-width: 2px; */
-  background-color: blueviolet;
-}
-
-.checker {
-  background-color: pink;
 }
 
 .header {
@@ -41,18 +23,12 @@
 }
 
 .col-data {
-  width: calc((100vw - 6em - 30px) / 4);
+  min-width: calc((100vw - 6em - 30px) / 4);
   text-align: right;
 }
-
-.col-pc {
-  /* width: 5em; */
-  text-align: right;
-}
-
 
 .hdr-item {
-  width: calc(((100vw - 6em) / 4) - 6px);
+  min-width: calc(((100vw - 6em) / 4) - 6px);
   text-align: center;
 }
 

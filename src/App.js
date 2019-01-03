@@ -31,35 +31,33 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div className="table-container">
-          <table>
-            <thead className="header">
-              <tr>
-                <th className="col-sym">Symbol</th>
-                <th className="hdr-item">Last</th>
-                <th className="hdr-item">Change</th>
-                <th className="hdr-item">Bid</th>
-                <th className="hdr-item">Ask</th>
+        <table>
+          <thead className="header">
+            <tr>
+              <th className="col-sym">Symbol</th>
+              <th className="hdr-item">Last</th>
+              <th className="hdr-item">Change</th>
+              <th className="hdr-item">Bid</th>
+              <th className="hdr-item">Ask</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>MMMM</td>
+            </tr>  
+            { 
+            (this.state.tickers || []).map(t => (
+              <tr key={t.sym}>
+                <td className="col-sym">{t.sym}</td>
+                <td className="col-data">{t.last.toFixed(2)}</td>
+                <td className="col-data">{`${t.pc >= 0 ? '+' : ''}${(t.pc * 100).toFixed(2)}%`}</td>
+                <td className="col-data">{t.bid ? t.bid.toFixed(2) : ' '}</td>
+                <td className="col-data">{t.ask ? t.ask.toFixed(2) : ' '}</td>
               </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>MMMM</td>
-              </tr>  
-              { 
-              (this.state.tickers || []).map(t => (
-                <tr key={t.sym}>
-                  <td className="col-sym">{t.sym}</td>
-                  <td className="col-data">{t.last.toFixed(2)}</td>
-                  <td className="col-data">{`${t.pc >= 0 ? '+' : ''}${(t.pc * 100).toFixed(2)}%`}</td>
-                  <td className="col-data">{t.bid ? t.bid.toFixed(2) : ' '}</td>
-                  <td className="col-data">{t.ask ? t.ask.toFixed(2) : ' '}</td>
-                </tr>
-              ))  
-              } 
-            </tbody>
-          </table>
-        </div>
+            ))  
+            } 
+          </tbody>
+        </table>
       </div>
     )
   }
