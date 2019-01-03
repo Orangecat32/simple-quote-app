@@ -30,18 +30,19 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <header className="header">
-          <div className="col-sym">Symbol</div>
-          <div className="col-data">Last</div>
-          <div className="col-pc">Change</div>
-          <div className="col-data">Bid</div>
-          <div className="col-data">Ask</div>
-        </header>
-        <div className="ticker-container">
-         { (this.state.tickers || []).map(t => (<div className="ticker-row" key={t.sym}><TickerRow {...t}/></div>)) }
+      <div className="App"> 
+        <div className="container">
+          <header className="header">
+            <div className="col-sym">Symbol</div>
+            <div className="col-data hdr-align">Last</div>
+            <div className="col-data hdr-align">Change</div>
+            <div className="col-data hdr-align">Bid</div>
+            <div className="col-data hdr-align">Ask</div>
+          </header>
+          <div className="ticker-list">  
+            { (this.state.tickers || []).map(t => (<div className="ticker-row" key={t.sym}><TickerRow {...t}/></div>)) }
+          </div>
         </div>
-  
       </div>
      ) }
 }
@@ -61,29 +62,21 @@ class TickerRow extends Component {
     const pc = t.pc * 100;
 
     return (
-      <table onClick={() => {this.setState({showDetails: !this.state.showDetails})}} >
-        <tbody>
-          <tr>
-            <td className="col-sym">{t.sym}</td>
-            <td className="col-data">{t.last.toFixed(2)}</td>
-            <td className="col-pc">{`${pcSign}${pc.toFixed(2)}%`}</td>
-            <td className="col-data">{t.bid ? t.bid.toFixed(2) : ''}</td>
-            <td className="col-data">{t.ask ? t.ask.toFixed(2) : ''}</td>
-          </tr>
-          { this.state.showDetails &&
-          <tr>
-            <td className="col-sym"></td>
-            <td className="col-details">{`${t.company} / ${t.subIndustry}`}</td> 
-          </tr>  
-          }
-          { this.state.showDetails &&
-          <tr>
-            <td className="col-sym"></td>
-            <td className="col-details">{`HQ: ${t.Location}`}</td> 
-          </tr>
-          }
-        </tbody>
-      </table>
+      <div className="ticker-container" onClick={() => {this.setState({showDetails: !this.state.showDetails})}} >
+        <div className="ticker-numeric">
+          <div className="col-sym">{t.sym}</div>
+          <div className="col-data">{t.last.toFixed(2)}</div>
+          <div className="col-data">{`${pcSign}${pc.toFixed(2)}%`}</div>
+          <div className="col-data">{t.bid ? t.bid.toFixed(2) : ''}</div>
+          <div className="col-data">{t.ask ? t.ask.toFixed(2) : ''}</div>
+        </div>
+        { this.state.showDetails &&
+          <div className="ticker-details">{`${t.company} / ${t.subIndustry}`}</div> 
+        }
+        { this.state.showDetails &&
+          <div className="ticker-details">{`HQ: ${t.Location}`}</div> 
+        }
+      </div>
     )};
 }
 
