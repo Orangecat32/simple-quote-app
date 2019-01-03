@@ -52,7 +52,7 @@
 }
 
 .col-data {
-  width: calc((100% - 5em - 5px) / 4);
+  width: calc((100% - 4em - 5px) / 4);
   text-align: right;
 }
 
