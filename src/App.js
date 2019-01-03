@@ -1,28 +1,92 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
+//  params for connection to websocket server
+const wsParams = {protocol: 'ws', hostname: 'localhost', port: 3002};
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {
+    const url = `${wsParams.protocol}://${wsParams.hostname}:${wsParams.port}`;
+    this.webSocket = new WebSocket(url);
+    this.webSocket.onmessage = (messageEvent) => {
+      const data = JSON.parse(messageEvent.data);
+      if(data['connection'] === 'ok') 
+      {
+        // connection made, request data subscription
+        this.webSocket.send(JSON.stringify({command: 'subscribe'}));
+      }
+      
+      if(data['tickers']) {
+      //  console.log(data['tickers']);
+        this.setState({tickers: data['tickers']});    
+      }
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+        <header className="header">
+          <div className="col-1">Symbol</div>
+          <div className="col-data">Last</div>
+          <div className="col-pc">Change</div>
+          <div className="col-data">Bid</div>
+          <div className="col-data">Ask</div>
         </header>
+        <div className="ticker-container">
+         { (this.state.tickers || []).map(t => (<div className="ticker-row" key={t.sym}><TickerRow {...t}/></div>)) }
+        </div>
+  
       </div>
-    );
-  }
+     ) }
 }
+
+
+class TickerRow extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showDetails: false
+    };
+  }
+
+  render() {
+    const t = this.props;
+    const pcSign = t.pc >= 0 ? '+' : '';
+    const pc = t.pc * 100;
+
+    return (
+      <table onClick={() => {this.setState({showDetails: !this.state.showDetails})}} >
+        <tbody>
+          <tr>
+            <td className="col-sym">{t.sym}</td>
+            <td className="col-data">{t.last.toFixed(2)}</td>
+            <td className="col-pc">{`${pcSign}${pc.toFixed(2)}%`}</td>
+            <td className="col-data">{t.bid ? t.bid.toFixed(2) : ''}</td>
+            <td className="col-data">{t.ask ? t.ask.toFixed(2) : ''}</td>
+          </tr>
+          { this.state.showDetails &&
+          <tr>
+            <td className="col-sym"></td>
+            <td className="col-details">{`${t.company} / ${t.subIndustry}`}</td> 
+          </tr>  
+          }
+          { this.state.showDetails &&
+          <tr>
+            <td className="col-sym"></td>
+            <td className="col-details">{`HQ: ${t.Location}`}</td> 
+          </tr>
+          }
+        </tbody>
+      </table>
+    )};
+}
+
+
 
 export default App;
