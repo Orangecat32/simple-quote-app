@@ -32,27 +32,24 @@ class App extends Component {
     return (
       <div className="App">
         <table>
-          <thead className="header">
+          <thead>
             <tr>
-              <th className="col-sym">Symbol</th>
-              <th className="hdr-item">Last</th>
-              <th className="hdr-item">Change</th>
-              <th className="hdr-item">Bid</th>
-              <th className="hdr-item">Ask</th>
+              <th>Symbol</th>
+              <th>Last</th>
+              <th>Change</th>
+              <th>Bid</th>
+              <th>Ask</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>MMMM</td>
-            </tr>  
             { 
             (this.state.tickers || []).map(t => (
               <tr key={t.sym}>
-                <td className="col-sym">{t.sym}</td>
-                <td className="col-data">{t.last.toFixed(2)}</td>
-                <td className="col-data">{`${t.pc >= 0 ? '+' : ''}${(t.pc * 100).toFixed(2)}%`}</td>
-                <td className="col-data">{t.bid ? t.bid.toFixed(2) : ' '}</td>
-                <td className="col-data">{t.ask ? t.ask.toFixed(2) : ' '}</td>
+                <td>{t.sym}</td>
+                <td>{t.last.toFixed(2)}</td>
+                <td>{`${t.pc >= 0 ? '+' : ''}${(t.pc * 100).toFixed(2)}%`}</td>
+                <td>{t.bid ? t.bid.toFixed(2) : ' '}</td>
+                <td>{t.ask ? t.ask.toFixed(2) : ' '}</td>
               </tr>
             ))  
             } 
