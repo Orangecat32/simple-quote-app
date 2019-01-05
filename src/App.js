@@ -22,7 +22,7 @@ class App extends Component {
       }
       
       if(data['tickers']) {
-      //  console.log(data['tickers']);
+        //  console.log(data['tickers']);
         this.setState({tickers: data['tickers']});    
       }
     }
@@ -44,82 +44,33 @@ class App extends Component {
           <tbody>
             { 
             (this.state.tickers || []).map(t => (
-              <tr key={t.sym}>
+              <tr 
+                key={t.sym} 
+                // Clicking on a row will add/remove the symbol from state.
+                // If the symbol is a key in state object, the extra data will be displayed
+                onClick={() => this.setState({[t.sym]: !this.state[t.sym]})}
+              >
                 <td>{t.sym}</td>
-                <td>{t.last.toFixed(2)}</td>
+                <td data-extra={`${this.state[t.sym] ? 'true' : ''}`}>
+                  {t.last.toFixed(2)}
+                  {this.state[t.sym] &&
+                  <>
+                    <div className="extraData">{`${t.company} / ${t.subIndustry}`}</div> 
+                    <div className="extraData">{`HQ: ${t.Location}`}</div>
+                  </>
+                  }  
+                </td>
                 <td>{`${t.pc >= 0 ? '+' : ''}${(t.pc * 100).toFixed(2)}%`}</td>
-                <td>{t.bid ? t.bid.toFixed(2) : ' '}</td>
-                <td>{t.ask ? t.ask.toFixed(2) : ' '}</td>
+                <td>{t.bid ? t.bid.toFixed(2) : ''}</td>
+                <td>{t.ask ? t.ask.toFixed(2) : ''}</td>
               </tr>
-            ))  
-            } 
+            ))
+            }
           </tbody>
         </table>
       </div>
     )
   }
 }
-
-  /* 
-/*
-
-              <td className="col-expand" >
-                <input type="checkbox" id="myCheck" className="checker" onClick={() => {
-                  console.log('click');
-                  }} /> 
-                </td>
-
-
-              <tr key={afsda}>
-                <td className="col-sym"></td>
-                <td className="col-sym"></td>
-                <td className="col-details">{`${t.company} / ${t.subIndustry}`}</td> 
-              </tr>  
-
-
-   <div style={{width: '10px'}}>
-                    {'X'}
-                  </div>
-
-class TickerRow extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showDetails: false
-    };
-  }
-
-  render() {
-    const t = this.props;
-    const pcSign = ;
-    const pc = t.pc * 100;
-
-    return (
-      <table onClick={() => {this.setState({showDetails: !this.state.showDetails})}} >
-        <tbody>
-          <tr>
-            <td className="col-sym">{t.sym}</td>
-            <td className="col-data">{t.last.toFixed(2)}</td>
-            <td className="col-pc">{`${pcSign}${pc.toFixed(2)}%`}</td>
-            <td className="col-data">{t.bid ? t.bid.toFixed(2) : ''}</td>
-            <td className="col-data">{t.ask ? t.ask.toFixed(2) : ''}</td>
-          </tr>
-          { this.state.showDetails &&
-          <tr>
-            <td className="col-sym"></td>
-            <td className="col-details">{`${t.company} / ${t.subIndustry}`}</td> 
-          </tr>  
-          }
-          { this.state.showDetails &&
-          <tr>
-            <td className="col-sym"></td>
-            <td className="col-details">{`HQ: ${t.Location}`}</td> 
-          </tr>
-          }
-        </tbody>
-      </table>
-    )};
-} */
-
 
 export default App;
