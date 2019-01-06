@@ -47,8 +47,9 @@
   width: 100%;
 }
 
-.hdr-align {
-  margin-right: .2em;
+.col-hdr {
+  width: calc((100% - 4em) / 4);
+  text-align: right;
 }
 
 .col-sym {

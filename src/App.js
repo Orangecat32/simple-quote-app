@@ -34,10 +34,10 @@ class App extends Component {
         <div className="container">
           <header className="header">
             <div className="col-sym">Symbol</div>
-            <div className="col-data hdr-align">Last</div>
-            <div className="col-data hdr-align">Change</div>
-            <div className="col-data hdr-align">Bid</div>
-            <div className="col-data hdr-align">Ask</div>
+            <div className="col-hdr">Last</div>
+            <div className="col-hdr">Change</div>
+            <div className="col-hdr">Bid</div>
+            <div className="col-hdr">Ask</div>
           </header>
           <div className="ticker-list">  
             { (this.state.tickers || []).map(t => (<div className="ticker-row" key={t.sym}><TickerRow {...t}/></div>)) }
