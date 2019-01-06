@@ -62,8 +62,11 @@ class TickerRow extends Component {
     const pc = t.pc * 100;
 
     return (
-      <div className="ticker-container" onClick={() => {this.setState({showDetails: !this.state.showDetails})}} >
-        <div className="ticker-numeric">
+      <div 
+        className="ticker-container" 
+        // click sets state on the row to control details visibility
+        onClick={() => {this.setState({showDetails: !this.state.showDetails})}} >
+        <div className="ticker-data">
           <div className="col-sym">{t.sym}</div>
           <div className="col-data">{t.last.toFixed(2)}</div>
           <div className="col-data">{`${pcSign}${pc.toFixed(2)}%`}</div>
@@ -71,10 +74,10 @@ class TickerRow extends Component {
           <div className="col-data">{t.ask ? t.ask.toFixed(2) : ''}</div>
         </div>
         { this.state.showDetails &&
+          <>
           <div className="ticker-details">{`${t.company} / ${t.subIndustry}`}</div> 
-        }
-        { this.state.showDetails &&
           <div className="ticker-details">{`HQ: ${t.Location}`}</div> 
+          </>
         }
       </div>
     )};
