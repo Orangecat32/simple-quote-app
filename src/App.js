@@ -22,7 +22,7 @@ class App extends Component {
       }
       
       if(data['tickers']) {
-       // console.log(data['tickers']);
+        console.log(data['tickers']);
         this.setState({tickers: data['tickers']});    
       }
     }
@@ -53,7 +53,7 @@ class App extends Component {
                 <td>{t.symbol}</td>
                 <td data-extra={`${this.state[t.symbol] ? 'true' : ''}`}>
                   {t.last.toFixed(2)}
-                  {this.state[t.sym] &&
+                  {this.state[t.symbol] &&
                   <>
                     <div className="extraData">{`${t.company} / ${t.subIndustry}`}</div> 
                     <div className="extraData">{`HQ: ${t.Location}`}</div>
