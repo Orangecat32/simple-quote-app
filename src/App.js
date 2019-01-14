@@ -22,7 +22,7 @@ class App extends Component {
       }
       
       if(data['tickers']) {
-        //  console.log(data['tickers']);
+       // console.log(data['tickers']);
         this.setState({tickers: data['tickers']});    
       }
     }
@@ -45,13 +45,13 @@ class App extends Component {
             { 
             (this.state.tickers || []).map(t => (
               <tr 
-                key={t.sym} 
-                // Clicking on a row will add/remove the symbol from state.
+                key={t.symbol} 
+                // Clicking on a row will add/remove the symbol from state.bol
                 // If the symbol is a key in state object, the extra data will be displayed
-                onClick={() => this.setState({[t.sym]: !this.state[t.sym]})}
+                onClick={() => this.setState({[t.symbol]: !this.state[t.symbol]})}
               >
-                <td>{t.sym}</td>
-                <td data-extra={`${this.state[t.sym] ? 'true' : ''}`}>
+                <td>{t.symbol}</td>
+                <td data-extra={`${this.state[t.symbol] ? 'true' : ''}`}>
                   {t.last.toFixed(2)}
                   {this.state[t.sym] &&
                   <>
