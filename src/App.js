@@ -40,7 +40,7 @@ class App extends Component {
             <div className="col-hdr">Ask</div>
           </header>
           <div className="ticker-list">  
-            { (this.state.tickers || []).map(t => (<div className="ticker-row" key={t.sym}><TickerRow {...t}/></div>)) }
+            { (this.state.tickers || []).map(t => (<div className="ticker-row" key={t.symbol}><TickerRow {...t}/></div>)) }
           </div>
         </div>
       </div>
@@ -67,7 +67,7 @@ class TickerRow extends Component {
         // click sets state on the row to control details visibility
         onClick={() => {this.setState({showDetails: !this.state.showDetails})}} >
         <div className="ticker-data">
-          <div className="col-sym">{t.sym}</div>
+          <div className="col-sym">{t.symbol}</div>
           <div className="col-data">{t.last.toFixed(2)}</div>
           <div className="col-data">{`${pcSign}${pc.toFixed(2)}%`}</div>
           <div className="col-data">{t.bid ? t.bid.toFixed(2) : ''}</div>
