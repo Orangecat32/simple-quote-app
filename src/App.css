@@ -1,83 +1,71 @@
-
 .App {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(5px + 2vmin);
   background-color: gray;
+  font-size: calc(5px + 2vmin);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+
+thead {
+  background-color: slategray;
+  top: 0px;
+  position: fixed;
+  height: 1.6em;
+}
+
+th {
+  width: calc(((100vw - 6em) / 4));
+  text-align: right;
+  padding-right: 5px;
+}
+
+th:first-child {
+  width: 5em;
+  text-align: left;
+  padding-left: 2px;
+}
+
+/* insert padding above the body so the header will not obscure the first row of the body */
+tbody:before {
+  line-height: 1.5em; 
+  content:"\t"; 
+}
+
+tbody tr {
+  background: lightcyan; 
+}
+
+tbody tr:nth-child(odd) {
+  background: lightblue;
+} 
+
+td {
+  width: calc((100vw - 5em) / 4);
+  text-align: right;
+  vertical-align: top;
+} 
+
+td[data-extra="true"]{
+  height: 4em;
+  max-width: 0;
+  overflow: visible;
+  white-space: nowrap;
+}
+
+td:first-child {
+  width: 5em;
+  text-align: left;
+  padding-left: 2px;
+  vertical-align: middle;
 }  
 
-.container {
-  display: flex;
-  flex-direction: column;
-  flex: 1 1;
-  justify-content: flex-start;
-  background-color: lightslategray;
-  max-width: 700px;
-}
-
-.header {
-  display: flex; 
-  background-color: lightslategray;
-  width: calc(100% - 20px);
-  height: 1.5em;
-}
-
-
-.ticker-list {
-  display: flex;
-  flex: 1 1;
-  flex-direction: column;
-  overflow-y: auto;
-  height: calc(100vh - 1.5em);
-}
-
-.ticker-container {
-  display: flex;
-  flex: 1 1;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-}
-
-.ticker-data {
-  display: flex;
-  flex: 1 1;
-  flex-direction: row;
-  width: 100%;
-}
-
-.hdr-align {
-  margin-right: .2em;
-}
-
-.col-sym {
-  width: 4em;
+.extraData {
   text-align: left;
-  margin-left: 2px;
 }
-
-.col-data {
-  width: calc((100% - 4em) / 4);
-  text-align: right;
-}
-
-
-.col-data:last-child {
-  margin-right: 2px;
-}
-
-.ticker-row {
-  background: lightblue;
-}
-
-.ticker-row:nth-of-type(odd) { background: lightcyan; }
-
-.ticker-details{
-  margin-left: 5em;
-}
-
-
-
-
 

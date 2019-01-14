@@ -1,21 +1,18 @@
-# Quote Viewer
+# Interview question: Write a simple quote viewer application
 
-## About this repro
-This is a demo application for viewing simulated market data
-
-## Application Notes
-- Requirements:
-    - Display and update Last, % Change, Bid, Ask from websocket server
-    - When a row is clicked, expand to show additional details
-    - Write the application in a couple of hours
+## Requirements
+  - Display and update the Last, % Change, Bid and Ask from a websocket server
+  - When a row is clicked, expand to show additional details
+  - Write the application in 90 minutes
   
--  History:
-    - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-    - A version using html table semantics without the additional details feature is on branch "html-table"
+## Strategy
+  - Bootstrap the project with [Create React App](https://github.com/facebook/create-react-app).
+  - Connect to quote service when the App component is mounted and set state when updates are received
+  - Toggle details visibility by adding the symbol of the expanded row to state when the row is clicked
+  - Two versions of the render were implemented:
+    1. Branch "html-table", primarily using "table" semantics
+    2. Branch "row-component", which uses a react component for each ticker row
 
-# Running the database server
-- To get data, run the quote server [Here](https://github.com/Orangecat32/simple-quote-server) on your machine  
-
-
-# Running tests
-- Not yet implemented
+     
+## Running the database server
+  - To get the quote data, run the server [in this repository](https://github.com/Orangecat32/simple-quote-server) on your machine  
