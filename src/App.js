@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 //  params for connection to websocket server
-const wsParams = {protocol: 'ws', hostname: 'localhost', port: 3002};
+const wsParams = {protocol: 'ws', hostname: 'localhost', port: 3006};
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class App extends Component {
         // connection made, request data subscription
         this.webSocket.send(JSON.stringify({command: 'subscribe'}));
       }
-      
+          
       if(data['tickers']) {
         //  console.log(data['tickers']);
         this.setState({tickers: data['tickers']});    
